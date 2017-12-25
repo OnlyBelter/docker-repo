@@ -1,9 +1,24 @@
 # Version: 0.0.1
-FROM continuumio/anaconda3
+FROM python:3.5-alpine
 MAINTAINER Xin Xiong "xiongxin20008@126.com"
-RUN conda create -n django-py35 python=3.5
-RUN source activate django-py35
-COPY requirements.txt /use/src/app/
-RUN pip install --no-cache-dir -r requirements.txt
+ENV PYTHONUNBUFFERED 1
+RUN set -e; \
+	apk add --no-cache --virtual .build-deps \
+		gcc \
+		libc-dev \
+		linux-headers \
+                mariadb-dev \
+                python3-dev \
+                postgresql-dev \
+                freetype-dev \
+                libpng-dev \
+                g++ \
+	;
+RUN mkdir /djcode
+WORKDIR /djcode
+ENV REFRESHED_AT 2017-12-25
+ADD requirements.txt /djcode/
+RUN pip install --no-cache-dir -r /djcode/requirements.txt
 RUN pip install uwsgi
+ADD . /djcode/
 EXPOSE 6001

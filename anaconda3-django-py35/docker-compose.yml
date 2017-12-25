@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: metdna_2017
+  web:
+    build: -t onlybelter/django_py35 .
+    command: python3 manage.py runserver 0.0.0.0:6001
+    volumes:
+      - .:/djcode
+    ports:
+      - "6001:6001"
+    depends_on:
+      - db
