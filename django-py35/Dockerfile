@@ -13,12 +13,15 @@ RUN set -e; \
                 freetype-dev \
                 libpng-dev \
                 g++ \
-	;
-RUN mkdir /djcode
-WORKDIR /djcode
+                pcre \
+                pcre-dev \
+                tzdata  \
+     	;
+RUN mkdir /code
+WORKDIR /code
 ENV REFRESHED_AT 2017-12-25
-ADD requirements.txt /djcode/
-RUN pip install --no-cache-dir -r /djcode/requirements.txt
+ADD requirements.txt /code/
+RUN pip install --no-cache-dir -r requirements.txt
 RUN pip install uwsgi
-ADD . /djcode/
+# ADD . /djcode/  # copy . to /djcode/
 EXPOSE 6001

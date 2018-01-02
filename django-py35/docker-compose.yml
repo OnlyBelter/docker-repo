@@ -1,0 +1,60 @@
+version: '3'
+
+services:
+  db:
+    image: mariadb:5.5
+    restart: always
+    environment:
+      - MYSQL_HOST=localhost
+      - MYSQL_PORT=3306
+      - MYSQL_ROOT_HOST=%
+      - MYSQL_DATABASE=metdna
+      - MYSQL_USER=metdna
+      - MYSQL_PASSWORD=******  # the password of MYSQL_USER
+      - MYSQL_ROOT_PASSWORD=******  # the password of root
+      #- "TZ=Asia/Shanghai"
+    volumes:
+      - /home/met2017/mdbdata/mdb55:/var/lib/mysql
+    ports:
+      - 3302:3306
+    #networks:
+    #  - db-net
+  web:
+    image: onlybelter/django_py35
+    restart: always
+    command: /bin/sh -c "python /code/check_db.py --service-name mysql --ip db --port 3306 &&
+                         python manage.py makemigrations &&
+                         python manage.py migrate && 
+                         addgroup -g 992 -S nginx || true &&
+                         adduser -u 996 -S -D -G nginx nginx || true &&
+                         uwsgi --ini /code/config/uwsgi/metdna.ini"
+    working_dir: /code/web/metDNA
+    volumes:
+      - .:/code
+      - /run/uwsgi:/run/uwsgi  # uwsgi unix socket, communicate with nginx
+      - /mnt/data/metdna-upload:/mnt/data/metdna-upload  # for MEDIA_ROOT of django
+      # - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    # ports:
+      # - "6001:6001"
+    depends_on:
+      - db
+
+  nginx:
+    image: nginx:1.12.2-alpine
+    volumes:
+      - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./config/nginx/conf.d:/etc/nginx/conf.d
+      - /mnt/data/metdna-upload:/mnt/data/metdna-upload  # for MEDIA_ROOT of django
+      - ./web:/mnt/data/www  # total web code, django and angular
+      - /run/uwsgi:/run/uwsgi  # uwsgi unix socket
+      # - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - 80:80
+      - 6001:6001
+    depends_on:
+      - web
+#networks:
+#  db-net:
+#    driver: bridge

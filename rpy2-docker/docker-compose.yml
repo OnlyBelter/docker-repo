@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  metdna:
+    image: onlybelter/rpy2-docker2
+    restart: always
+    command: python3 run_metDNA.py
+    working_dir: /code
+    volumes:
+      - ./code:/code
+      - /mnt/data/metdna-upload:/mnt/data/metdna-upload
+networks:
+  default:
+    external:
+      name: djangopy35_default
