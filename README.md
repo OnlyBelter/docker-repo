@@ -14,6 +14,11 @@ Get the latest project clone to your computer:
 ```bash
 $ git clone git@github.com:OnlyBelter/docker-repo.git
 ```
+Build image:
+```
+cd django-py35
+docker build -t onlybelter/django_py35 .
+```
 Run docker-compose commands to start containers:
 ```bash
 $ docker-compose up -d
