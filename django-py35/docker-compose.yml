@@ -12,7 +12,7 @@ services:
       - MYSQL_USER=metdna
       - MYSQL_PASSWORD=******  # the password of MYSQL_USER
       - MYSQL_ROOT_PASSWORD=******  # the password of root
-      #- "TZ=Asia/Shanghai"
+      - TZ=Asia/Shanghai
     volumes:
       - /home/met2017/mdbdata/mdb55:/var/lib/mysql
     ports:
