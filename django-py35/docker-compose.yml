@@ -19,6 +19,11 @@ services:
       - 3302:3306
     #networks:
     #  - db-net
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --skip-character-set-client-handshake
+
   web:
     image: onlybelter/django_py35
     restart: always
