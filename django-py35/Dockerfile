@@ -23,5 +23,5 @@ ENV REFRESHED_AT 2017-12-25
 ADD requirements.txt /code/
 RUN pip install --no-cache-dir -r requirements.txt
 RUN pip install uwsgi
-# ADD . /djcode/  # copy . to /djcode/
+RUN apk add --update nginx
 EXPOSE 6001
