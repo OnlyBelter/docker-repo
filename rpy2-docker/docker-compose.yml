@@ -9,6 +9,7 @@ services:
     volumes:
       - ./code:/code
       - /mnt/data/metdna-upload:/mnt/data/metdna-upload
+      - /etc/localtime:/etc/localtime:ro
 networks:
   default:
     external:
