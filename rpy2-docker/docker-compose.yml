@@ -3,7 +3,7 @@ version: '3'
 services:
   metdna:
     image: onlybelter/rpy2-docker2
-    restart: always
+    restart: on-failure
     command: python3 run_metDNA.py
     working_dir: /code
     volumes:
