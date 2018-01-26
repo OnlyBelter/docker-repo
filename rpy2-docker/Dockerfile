@@ -42,7 +42,14 @@ RUN \
   rm -rf /root/.cache
 
 ADD ./code/ /code/
+
+RUN \
+  apt-get update && \
+  apt-get install -y pandoc
+  
 RUN \
   cd /code && \
-  R CMD INSTALL MetDNA_0.99.12-3.tar.gz
+  R CMD INSTALL analysisReport_1.0.0.tar.gz && \
+  R CMD INSTALL MetDNA_1.0.0.tar.gz
 
+RUN R -e 'library(MetDNA)'
