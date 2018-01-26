@@ -10,6 +10,9 @@ services:
       - ./code:/code
       - /mnt/data/metdna-upload:/mnt/data/metdna-upload
       - /etc/localtime:/etc/localtime:ro
+    environment:
+      - PYTHONUNBUFFERED=1
+      
 networks:
   default:
     external:
