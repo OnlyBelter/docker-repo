@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  jupyter:
+    image: jupyter/scipy-notebook
+    restart: on-failure
+    volumes:
+      - /mnt/home/belter/Jupyter/work:/home/jovyan/work
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - PYTHONUNBUFFERED=1
+    ports:
+      - 8888:8888
+    command:
+      - start-notebook.sh
+      - --NotebookApp.password='sha1:48d34...:<your hashed password>'
