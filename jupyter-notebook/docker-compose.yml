@@ -5,7 +5,7 @@ services:
     image: jupyter/datascience-notebook
     restart: on-failure
     volumes:
-      - /mnt/home/belter/github/jupyter-note:/nmt/notebook
+      - /mnt/home/belter/github/jupyter-note:/mnt/notebook
       - /etc/localtime:/etc/localtime:ro
     environment:
       - PYTHONUNBUFFERED=1
