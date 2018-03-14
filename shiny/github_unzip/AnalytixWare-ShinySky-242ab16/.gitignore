@@ -1,0 +1,22 @@
+# History files
+.Rhistory
+*.RData
+.RData
+*.sublime-workspace
+# Example code in package build process
+*-Ex.R
+.Rproj.user
+
+.RData
+
+shinysky.sublime-workspace
+
+man/jscolorInput.Rd
+
+man/jstree.obj.Rd
+
+man/jstree.Rd
+
+R/jstree.R
+
+.RDataTmp

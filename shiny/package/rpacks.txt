@@ -1,0 +1,15 @@
+shiny
+Cairo
+shinythemes
+digest
+colourpicker
+shinyBS
+ggplot2
+dplyr
+shinyalert
+rmarkdown
+devtools
+RJSONIO
+DT
+readr
+shinyjs

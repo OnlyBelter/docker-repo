@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  shiny:
+    image: onlybelter/rpy2-shiny
+    restart: on-failure
+    command: /bin/bash -c "shiny-server"
+    working_dir: /srv/shiny-server
+    volumes:
+      - ./code/lipidIMMS:/srv/shiny-server/lipidIMMS
+      - ./log:/var/log/shiny-server
+    ports:
+      - 3838:3838

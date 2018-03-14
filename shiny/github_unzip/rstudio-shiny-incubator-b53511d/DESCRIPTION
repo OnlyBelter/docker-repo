@@ -1,0 +1,18 @@
+Package: shinyIncubator
+Type: Package
+Title: Unofficial add-ons for Shiny
+Version: 0.2.2
+Date: 2012-09-19
+Author: RStudio, Inc.
+Maintainer: Joe Cheng <joe@rstudio.org>
+Description: Components and other goodies for Shiny that don't belong in, or
+    aren't ready for, the core framework.
+License: GPL-3
+Depends:
+    R (>= 2.14.1)
+Imports:
+    methods,
+    shiny (>= 0.11.0),
+    htmltools
+URL: https://github.com/rstudio/shiny-incubator
+BugReports: https://github.com/rstudio/shiny-incubator/issues
