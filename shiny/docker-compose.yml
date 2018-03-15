@@ -7,7 +7,7 @@ services:
     command: /bin/bash -c "shiny-server"
     working_dir: /srv/shiny-server
     volumes:
-      - ./code/lipidIMMS:/srv/shiny-server/lipidIMMS
+      - ./code/lipidIMMS:/srv/shiny-server
       - ./log:/var/log/shiny-server
     ports:
-      - 3838:3838
+      - 8010:3838
