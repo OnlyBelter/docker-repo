@@ -5,9 +5,11 @@ services:
     image: onlybelter/rpy2-shiny
     restart: on-failure
     command: /bin/bash -c "shiny-server"
-    working_dir: /srv/shiny-server
+    working_dir: /srv/shiny-server2
     volumes:
-      - ./code/lipidIMMS:/srv/shiny-server
+      - ./config:/etc/shiny-server
+      - ./code/lipidIMMS:/srv/shiny-server2
       - ./log:/var/log/shiny-server
+      - /etc/localtime:/etc/localtime:ro
     ports:
-      - 8010:3838
+      - 3838:3838
