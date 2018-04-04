@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  rstudio-server:
+    image: onlybelter/rpy2-rstudio
+    restart: on-failure
+    ports:
+      - 8787:8787
+    volumes:
+      - /mnt/home/xiongxin/local/rstudio_home:/home/rstudio
+    working_dir: /home/rstudio
