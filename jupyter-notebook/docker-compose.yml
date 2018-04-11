@@ -1,14 +1,14 @@
 version: '3'
 
 services:
-  jupyter:
-    image: jupyter/datascience-notebook
-    restart: on-failure
+  jupyterlab:
+    image: onlybelter/datascience-notebook
+    # command: /bin/bash -c "start.sh jupyter lab --NotebookApp.keyfile=/etc/ssl/notebook/mykey.key --NotebookApp.certfile=/etc/ssl/notebook/mycert.pem --NotebookApp.port=8000 --NotebookApp.password=u'sha1:9f3677c93909:e3f84a329f8b5d6f2390ccba682cac5d0f7e9b83'"
+    command: /bin/bash -c "jupyter lab --no-browser --ip=0.0.0.0 --notebook-dir=/mnt/notebook"
     volumes:
-      - /mnt/home/belter/github/jupyter-note:/mnt/notebook
+      - /mnt/home/xiongxin/github/jupyter-note:/mnt/notebook
       - /etc/localtime:/etc/localtime:ro
     environment:
       - PYTHONUNBUFFERED=1
     ports:
       - 8888:8888
-    command: /bin/bash -c "jupyter lab --no-browser --ip=0.0.0.0 --notebook-dir=/mnt/notebook"
