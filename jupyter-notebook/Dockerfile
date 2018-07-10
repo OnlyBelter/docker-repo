@@ -1,7 +1,9 @@
-FROM jupyter/datascience-notebook
+FROM jupyter/datascience-notebook:03b897d05f16
 MAINTAINER Xin Xiong <xiongxin20008@126.com>
 
-ARG CRAN_MIRROR=https://cran.rstudio.com/
+# ARG CRAN_MIRROR=https://cran.rstudio.com/
+
+ARG CRAN_MIRROR=https://mirrors.tuna.tsinghua.edu.cn/CRAN/
 
 USER root
 
@@ -12,6 +14,7 @@ RUN \
   apt-get install -y mlocate && updatedb && \
   rm -rf /var/lib/apt/lists/*
 
+# need ln for avoiding some error, conftest.c:1:10: fatal error: jni.h: No such file or directory
 RUN \
   ln -s /usr/lib/jvm/java-8-openjdk-amd64/include/jni.h /opt/conda/include/ && \
   ln -s /usr/lib/jvm/java-8-openjdk-amd64/include/linux/jni_md.h /opt/conda/include/  && \
@@ -50,5 +53,7 @@ RUN \
   #rm -rf /root/.cache
 
 RUN conda install -c rdkit rdkit
+
+RUN conda install -c mordred-descriptor mordred
 
 USER jovyan
