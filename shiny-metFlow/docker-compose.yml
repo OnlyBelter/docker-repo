@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  shiny:
+    image: onlybelter/rpy2-shiny-metflow
+    restart: on-failure
+    command: /bin/bash -c "shiny-server"
+    working_dir: /srv/shiny-server2
+    volumes:
+      - ./config:/etc/shiny-server
+      - ./code/metflow:/srv/shiny-server2
+      - ./log:/var/log/shiny-server
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - 8011:3838
