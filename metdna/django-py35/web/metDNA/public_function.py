@@ -3,9 +3,9 @@ import shutil
 import re
 
 # URL = 'http://localhost:8024/media'
-URL = 'http://metdna.zhulab.cn/media'  # formal cloud url
+# URL = 'http://metdna.zhulab.cn/media'  # formal cloud url
 # URL = 'http://192.168.201.33/media'  # formal web url
-# URL = 'http://192.168.201.33:8024/media'  # test web url
+URL = 'http://192.168.201.33:8024/media'  # test web url
 MEDIA_ROOT = '/mnt/data/metdna-upload'  # local path in docker
 
 THREADS = 5
@@ -61,8 +61,8 @@ RESULT_FILE_NAME = 'results.tar.gz'
 with open('./db_passwd.secret') as f:
     db_para = [i.strip() for i in f.read().split('\n')]
 
-_log_in_info = {'host': db_para[0], 'user': 'metdna', 'port': int(db_para[1]),
-             'passwd': db_para[2], 'db': 'metdna'}  # log in information
+_ = {'host': db_para[0], 'user': 'metdna', 'port': int(db_para[1]),
+     'passwd': db_para[2], 'db': 'metdna'}  # log in information
 
 Q = {
     'q_pro_queue':  # project queue

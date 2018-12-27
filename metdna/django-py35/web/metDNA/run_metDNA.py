@@ -10,10 +10,10 @@ import smtplib
 from email.message import EmailMessage
 from public_function import (CE, SPECIES, STAT_METHOD, ADJUST_P, INSTT,
                              NAME_MAPPING, dic2string, get_url, THREADS,
-                             check_log_file, RESULT_FILE_NAME, _log_in_info, Q,
+                             check_log_file, RESULT_FILE_NAME, _, Q,
                              BASE_MSG, BASE_MSG_ERROR, URL, MEDIA_ROOT)
 
-_ = _log_in_info
+
 def get_project_info(q_queue, q_files, q_user, q_project, system='linux'):
     """
     :param q_queue: query project queue
